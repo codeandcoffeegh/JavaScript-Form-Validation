@@ -6,9 +6,6 @@ const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirmPassword');
 const address = document.getElementById('address');
 const phoneNumber = document.getElementById('phoneNumber');
-const principal = document.getElementById('principal');
-const rate = document.getElementById('rate');
-const time = document.getElementById('time');
 
 //form
 const form = document.getElementById('signUp');
@@ -86,29 +83,9 @@ function validateEmail() {
     if (!containsCharacters(email, 5)) return;
 }
 
-//validate principal
-function validatePrincipal() {
-    if (checkIfEmpty(principal)) return;
-    if (!onlyNumbers(principal)) return;
-    return true;
-}
-
-//validate rate
-function validateRate() {
-    if (checkIfEmpty(rate)) return;
-    if (!onlyNumbers(rate)) return;
-    return true;
-}
-
-//validate time
-function validateTime() {
-    if (checkIfEmpty(time)) return;
-    if (!onlyNumbers(time)) return;
-    return true;
-}
 
 
-//Utility functions
+//Utility functions - reusable accross the other validation functions
 //check if field value is empty then set valid
 function checkIfEmpty(field) {
     if (isEmpty(field.value.trim())) {
@@ -189,6 +166,7 @@ function meetLength(field, minLength, maxLength) {
     }
 }
 
+//function to check which characters are in the input field
 function containsCharacters(field, code) {
     let regEx;
     switch (code) {
@@ -226,14 +204,4 @@ function mathWithRegEx(regEx, field, message) {
         setInvalid(field, message);
         return false;
     }
-}
-
-//calculation for simple interest 
-function calculate() {
-    var principalNum = document.getElementById("principal").value;
-    var rateNum = document.getElementById("rate").value;
-    var timeNum = document.getElementById("time").value;
-    var simpleInterest = (principalNum * rateNum * timeNum) / 100;
-    document.getElementById("simpleInterest").innerHTML = simpleInterest;
-    console.log(simpleInterest);
 }
